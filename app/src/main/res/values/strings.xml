@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">espacios_um</string>
+    //Vista iniciar sesion
+    <string name="txtCodigoE">Codigo estudiantil:</string>
+    <string name="txtContrasenaE">Contraseña:</string>
+    <string name="btnIniciarSesion">Iniciar sesión</string>
+
+
+    <string name="btnLogin">Login</string>
+    <string name="btnRegistro">Registro</string>
+    //Vista Usuario
+    <string name="txtBienvenido">Bienvenido</string>
+    <string name="btnCerrarSesion">Cerrar sesión</string>
+    <string name="btnListarReserva">Reservas</string>
+    <string name="btnSalones">Salones</string>
+    <string name="btnCanchas">Canchas</string>
+    <string name="btnAuditorios">Auditorios</string>
+    <string name="btnLaboratorios">Laboratorios</string>
+
+</resources>

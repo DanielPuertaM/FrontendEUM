@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".controladores.Estudiante">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="#888888"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNombreU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carlos Daniel Sánchez Palomino"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/txtCodU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cod. 2020114111"
+        android:textColor="#888888"
+        app:layout_constraintTop_toBottomOf="@id/txtNombreU"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/btnListarReservas"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+
+        android:backgroundTint="#000000"
+        android:text="Mis reservas"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtCodU" />
+
+    <TextView
+        android:id="@+id/txtEscoge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escoge un tipo de\nespacio"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/btnListarReservas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp" />
+
+    <!-- Botones de tipos de espacio -->
+
+    <Button
+        android:id="@+id/btnAuditorios"
+        android:layout_width="121dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#333333"
+        android:text="Auditorios"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnCanchas"
+        app:layout_constraintTop_toBottomOf="@id/txtEscoge" />
+
+    <Button
+        android:id="@+id/btnSalones"
+        android:layout_width="102dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#333333"
+        android:text="Salones"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnCanchas"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtEscoge"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCanchas"
+        android:layout_width="104dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#333333"
+        android:text="Canchas"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@id/btnAuditorios"
+        app:layout_constraintStart_toEndOf="@id/btnSalones"
+        app:layout_constraintTop_toBottomOf="@id/txtEscoge" />
+
+    <Button
+        android:id="@+id/btnLaboratorios"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Laboratorios"
+        android:backgroundTint="#333333"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/btnSalones"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
