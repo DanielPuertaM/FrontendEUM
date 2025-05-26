@@ -25,11 +25,6 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
         this.tipo=tipo;
     }
 
-
-
-
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Espacio espacio = getItem(position);
@@ -45,22 +40,18 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
             else{
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_espacio, parent, false);
             }
-
         }
+
         TextView nombre = convertView.findViewById(R.id.txtNombre);
         TextView capacidad = convertView.findViewById(R.id.txtCapacidad);
-
-
-
-
 
         nombre.setText(espacio.getNombre());
         capacidad.setText("Capacidad: " + espacio.getCapacidad());
 
-        if (tipo.equals("Conserje")){
+        if (tipo.equals("Conserje")) {
             Button reportar= convertView.findViewById(R.id.btnReportar);
             reportar.setOnClickListener(view -> {
-                if (listener !=null){
+                if (listener != null){
                     listener.onEspacioReportarClick(espacio);
                 }
 
@@ -93,12 +84,6 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
                 }
             });
         }
-
-
-
-
         return convertView;
     }
-
 }
-

@@ -44,7 +44,7 @@ public class HorariosAdapter extends ArrayAdapter<Horario> {
         }
 
         horaInicio.setText(String.valueOf(horario.getHoraInicio()));
-        horaFinal.setText(String.valueOf(horario.getHoraFinal()));
+        horaFinal.setText(String.valueOf(horario.getHoraFin()));
 
         reservar.setOnClickListener(view -> {
             if(listener != null) {
