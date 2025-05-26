@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class gestionUsuarioConserjeControlador extends AppCompatActivity implements OnUsuariosClickListener {
+public class gestionUsuarioConserjeYProfesorControlador extends AppCompatActivity implements OnUsuariosClickListener {
     ListView listUsuarios;
 
     SearchView shUsuarios;
@@ -119,7 +120,8 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
      */
     @Override
     public void onModificarUsuario(Usuario usuario) {
-        Intent intent = new Intent(gestionUsuarioConserjeControlador.this, ModificarUsuario.class);
+        Intent intent = new Intent(gestionUsuarioConserjeYProfesorControlador.this, ModificarUsuario.class);
+        usuario.setTipo(tipo);
         intent.putExtra("usuario_a_modificar", usuario);
         startActivity(intent);
     }
@@ -129,7 +131,20 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
      */
     @Override
     public void onEliminarUsuario(Usuario usuario) {
+        new AlertDialog.Builder(gestionUsuarioConserjeYProfesorControlador.this)
+                .setTitle("Confirmación")
+                .setMessage("¿Estás seguro de que deseas eliminar este usuario?")
+                .setPositiveButton("Sí", (dialog, which) -> {
+                    if ("Conserje".equalsIgnoreCase(usuario.getTipo())) {
 
+                        eliminarConserje(usuario);
+                    }else if ("Profesor".equalsIgnoreCase(usuario.getTipo())){
+                        eliminarProfesor(usuario);
+                    }
+
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     private void conserjes(){
@@ -142,7 +157,7 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
                     List<Usuario> usuarios1 = response.body();
 
 
-                    UsuarioAdapter adapter1 = new UsuarioAdapter(gestionUsuarioConserjeControlador.this, usuarios1,gestionUsuarioConserjeControlador.this,"Conserje");
+                    UsuarioAdapter adapter1 = new UsuarioAdapter(gestionUsuarioConserjeYProfesorControlador.this, usuarios1, gestionUsuarioConserjeYProfesorControlador.this,"Conserje");
                     listUsuarios.setAdapter(adapter1);
 
                     adapter=adapter1;
@@ -154,7 +169,7 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
 
             @Override
             public void onFailure(Call<List<Usuario>> call, Throwable t) {
-                Toast.makeText(gestionUsuarioConserjeControlador.this, "Error al cargar los usuarios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Error al cargar los usuarios", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -170,7 +185,7 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
                     List<Usuario> usuarios1 = response.body();
 
 
-                    UsuarioAdapter adapter1 = new UsuarioAdapter(gestionUsuarioConserjeControlador.this, usuarios1,gestionUsuarioConserjeControlador.this,"Conserje");
+                    UsuarioAdapter adapter1 = new UsuarioAdapter(gestionUsuarioConserjeYProfesorControlador.this, usuarios1, gestionUsuarioConserjeYProfesorControlador.this,"Profesor");
                     listUsuarios.setAdapter(adapter1);
 
                     adapter=adapter1;
@@ -182,10 +197,54 @@ public class gestionUsuarioConserjeControlador extends AppCompatActivity impleme
 
             @Override
             public void onFailure(Call<List<Usuario>> call, Throwable t) {
-                Toast.makeText(gestionUsuarioConserjeControlador.this, "Error al cargar los usuarios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Error al cargar los usuarios", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
+    private void eliminarConserje(Usuario usuario){
+
+        Call<Void> call = usuarioApi.deleteConserje(usuario.getID());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Conserje eliminado", Toast.LENGTH_SHORT).show();
+                conserjes();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Conserje no encontrado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+    }
+
+    private void eliminarProfesor(Usuario usuario){
+
+        Call<Void> call = usuarioApi.deleteProfesores(usuario.getID());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Profesor eliminado", Toast.LENGTH_SHORT).show();
+                profesores();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(gestionUsuarioConserjeYProfesorControlador.this, "Profesor no encontrado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+    }
+
+
 
 }

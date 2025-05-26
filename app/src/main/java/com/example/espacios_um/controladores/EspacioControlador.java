@@ -112,8 +112,21 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
 
     }
 
+    /**
+     * @param espacio
+     */
+    @Override
+    public void onEspacioModificarClick(Espacio espacio) {
 
+    }
 
+    /**
+     * @param espacio
+     */
+    @Override
+    public void onEspacioEliminarClick(Espacio espacio) {
+
+    }
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -248,7 +261,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
 
         horarioApi = ApiClient.getRetrofit().create(HorarioApi.class);
         listViewReservas.setVisibility(View.VISIBLE);
-        Call<List<Horario>> call = horarioApi.listarPorId(1L);
+        Call<List<Horario>> call = horarioApi.listarPorId(espacio.getId());
         call.enqueue(new Callback<List<Horario>>() {
             @Override
             public void onResponse(Call<List<Horario>> call, Response<List<Horario>> response) {

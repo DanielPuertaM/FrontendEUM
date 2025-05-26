@@ -34,9 +34,15 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Espacio espacio = getItem(position);
         if (convertView == null) {
-            if (tipo.equals("Conserje")){
+            if (tipo.equalsIgnoreCase("Conserje")){
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_reportar_espacio, parent, false);
-            }else{
+            }else if (tipo.equalsIgnoreCase("Admin")){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_gestion_espacios,parent, false);
+
+            }
+
+
+            else{
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_espacio, parent, false);
             }
 
@@ -59,7 +65,27 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
                 }
 
             });
-        }else{
+        } else if (tipo.equalsIgnoreCase("Admin")){
+            Button btnModificar=convertView.findViewById(R.id.btnModificar);
+            Button btnEliminar= convertView.findViewById(R.id.btnEliminar);
+            btnModificar.setOnClickListener(view -> {
+                if (listener !=null){
+                    listener.onEspacioModificarClick(espacio);
+
+                }
+            });
+
+            btnEliminar.setOnClickListener(view -> {
+                if (listener !=null){
+                    listener.onEspacioEliminarClick(espacio);
+
+                }
+            });
+
+        }
+
+
+        else{
             Button horarios =  convertView.findViewById(R.id.btnHorarios);
             horarios.setOnClickListener(view -> {
                 if (listener != null) {

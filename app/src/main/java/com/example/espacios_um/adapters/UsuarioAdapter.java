@@ -58,11 +58,15 @@ public class UsuarioAdapter extends ArrayAdapter<Usuario> {
         Button eliminar = convertView.findViewById(R.id.btnEliminar);
 
         nombre.setText(usuario.getNombre());
-        if ( tipo.equalsIgnoreCase("Conserje")||tipo.equalsIgnoreCase("Profesor")){
+        if ( tipo.equalsIgnoreCase("Conserje")){
             codigo.setText("Identificacion: " + usuario.getIdentificacion());
+            usuario.setTipo("Conserje");
+        }else if (tipo.equalsIgnoreCase("Profesor")){
+
+            codigo.setText("Identificacion: " + usuario.getIdentificacion());
+            usuario.setTipo("Profesor");
         }else{
             codigo.setText("Codigo: " + usuario.getCodigo());
-
         }
         modificar.setOnClickListener(view -> {
             if (listener != null) {

@@ -27,6 +27,13 @@
         <item>Conserje</item>
     </string-array>
 
+    <string-array name="tipo_espacio_array">
+        <item>Salon</item>
+        <item>Laboratorio</item>
+        <item>Cancha</item>
+        <item>Auditorio</item>
+    </string-array>
+
     <string-array name="tipo_usuarios_array">
         <item>Conserjes</item>
         <item>Estudiantes</item>

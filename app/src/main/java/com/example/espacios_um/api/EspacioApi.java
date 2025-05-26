@@ -5,6 +5,8 @@ package com.example.espacios_um.api;
 import com.example.espacios_um.modelos.Espacio;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,8 +17,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface EspacioApi {
-    @POST("api/espacios")
-    Call<Espacio> crear(@Body Espacio espacio);
+    @POST("api/v1/espacios")
+    Call<Espacio> crear(@Body Map<String, String> body);
 
     @GET("api/v1/espacios")
     Call<List<Espacio>> listar();
@@ -28,8 +30,10 @@ public interface EspacioApi {
     Call<Espacio> buscar(@Path("id") Long id);
 
     @PUT("api/v1/espacios/{id}")
-    Call<Espacio> update(@Path("id") Long id, @Body Espacio espacio);
+    Call<Espacio> update(@Path("id") Long id, @Body Map<String, String> body);
 
     @DELETE("api/v1/espacios/{id}")
-    Call<Espacio> delete(@Path("id") Long id);
+    Call<Void> delete(@Path("id") Long id);
+
+
 }

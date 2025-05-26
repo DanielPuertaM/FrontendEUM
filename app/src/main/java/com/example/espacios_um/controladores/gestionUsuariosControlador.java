@@ -11,6 +11,7 @@
     import android.widget.Toast;
 
     import androidx.activity.EdgeToEdge;
+    import androidx.appcompat.app.AlertDialog;
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.core.graphics.Insets;
     import androidx.core.view.ViewCompat;
@@ -43,7 +44,7 @@
 
         Spinner spinner;
 
-
+        String tipo;
 
 
         List<Usuario> usuarios;
@@ -54,6 +55,7 @@
             super.onCreate(savedInstanceState);
             EdgeToEdge.enable(this);
             setContentView(R.layout.activity_gestion_usuarios);
+            tipo= getIntent().getStringExtra("tipos");
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -119,6 +121,7 @@
         @Override
         public void onModificarUsuario(Usuario usuario) {
             Intent intent = new Intent(gestionUsuariosControlador.this, ModificarUsuario.class);
+            usuario.setTipo(tipo);
             intent.putExtra("usuario_a_modificar", usuario);
             startActivity(intent);
         }
@@ -128,7 +131,14 @@
          */
         @Override
         public void onEliminarUsuario(Usuario usuario) {
-
+            new AlertDialog.Builder(gestionUsuariosControlador.this)
+                    .setTitle("Confirmación")
+                    .setMessage("¿Estás seguro de que deseas eliminar este usuario?")
+                    .setPositiveButton("Sí", (dialog, which) -> {
+                        eliminarUsuario(usuario);
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         }
 
         private void estudiantes(){
@@ -155,6 +165,27 @@
                     Toast.makeText(gestionUsuariosControlador.this, "Error al cargar los usuarios", Toast.LENGTH_SHORT).show();
                 }
             });
+
+        }
+
+        private void eliminarUsuario(Usuario usuario){
+
+            Call<Void> call = usuarioApi.deleteEstudiante(usuario.getID());
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Toast.makeText(gestionUsuariosControlador.this, "Estudiante eliminado", Toast.LENGTH_SHORT).show();
+                    estudiantes();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(gestionUsuariosControlador.this, "Estudiante no encontrado", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
 
         }
 

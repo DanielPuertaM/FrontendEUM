@@ -77,7 +77,7 @@ public class Registro extends AppCompatActivity {
         });
         spinner= findViewById(R.id.spinner);
 
-        spinner =findViewById(R.id.spinner);
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

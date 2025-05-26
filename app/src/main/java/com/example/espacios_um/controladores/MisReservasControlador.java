@@ -121,6 +121,22 @@ public class MisReservasControlador extends AppCompatActivity implements OnEspac
     }
 
     /**
+     * @param espacio
+     */
+    @Override
+    public void onEspacioModificarClick(Espacio espacio) {
+
+    }
+
+    /**
+     * @param espacio
+     */
+    @Override
+    public void onEspacioEliminarClick(Espacio espacio) {
+
+    }
+
+    /**
      * @param horario
      */
     @Override

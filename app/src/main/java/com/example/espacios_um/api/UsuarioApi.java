@@ -44,7 +44,22 @@ public interface UsuarioApi {
     Call<List<Usuario>> all();
 
     @PUT("api/v1/estudiantes/{id}")
-    Call<Usuario> update(@Path("id") Long id, @Body Usuario usuario);
+    Call<Usuario> update(@Path("id") Long id, @Body Map<String, String> body);
+
+    @PUT("api/v1/profesores/{id}")
+    Call<Usuario> updateProfesor(@Path("id") Long id, @Body Map<String, String> body);
+
+    @PUT("api/v1/conserjes/{id}")
+    Call<Usuario> updateConserje(@Path("id") Long id, @Body Map<String, String> body);
+
+    @DELETE("api/v1/estudiantes/{id}")
+    Call<Void> deleteEstudiante(@Path("id") Long id);
+
+    @DELETE("api/v1/conserjes/{id}")
+    Call<Void> deleteConserje(@Path("id") Long id);
+
+    @DELETE("api/v1/profesores/{id}")
+    Call<Void> deleteProfesores(@Path("id") Long id);
 
     @DELETE("api/v1/usuarios/{id}")
     Call<Usuario> delete(@Path("id") Long id, @Body Usuario usuario);

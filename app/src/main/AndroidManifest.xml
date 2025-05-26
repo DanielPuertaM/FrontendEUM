@@ -16,7 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".controladores.gestionUsuarioConserjeControlador"
+            android:name=".controladores.ModificarYCargarEspaciosControlador"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.gestionUsuarioConserjeYProfesorControlador"
             android:exported="false" />
         <activity
             android:name=".controladores.gestionDeEspaciosControlador"

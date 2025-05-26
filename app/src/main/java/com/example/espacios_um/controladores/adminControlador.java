@@ -44,23 +44,29 @@ public class adminControlador extends AppCompatActivity {
 
         btnGestionEstudiantes.setOnClickListener(view -> {
             Intent intent = new Intent(adminControlador.this, gestionUsuariosControlador.class);
-
+            intent.putExtra("tipo","Estudiantes");
             startActivity(intent);
 
         });
 
         btnGestionarConserjes.setOnClickListener(view -> {
-            Intent intent = new Intent(adminControlador.this, gestionUsuarioConserjeControlador.class);
+            Intent intent = new Intent(adminControlador.this, gestionUsuarioConserjeYProfesorControlador.class);
             intent.putExtra("tipos","Conserjes");
             startActivity(intent);
         });
 
         btnGestionarProfesores.setOnClickListener(view -> {
-            Intent intent = new Intent(adminControlador.this, gestionUsuarioConserjeControlador.class);
+            Intent intent = new Intent(adminControlador.this, gestionUsuarioConserjeYProfesorControlador.class);
             intent.putExtra("tipos","Profesores");
             startActivity(intent);
         });
 
+
+        btnGestionarEspacio.setOnClickListener(view -> {
+            Intent intent = new Intent(adminControlador.this, gestionDeEspaciosControlador.class);
+
+            startActivity(intent);
+        });
 
 
 
