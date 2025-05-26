@@ -58,8 +58,7 @@
                     android:id="@+id/btnReservar"
                     android:layout_width="139dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/redondeado_boton"
-
+                    android:background="@drawable/boton_borde"
                     android:text="Reservar"
                     android:textColor="#000000" />
 

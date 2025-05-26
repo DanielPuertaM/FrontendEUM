@@ -1,5 +1,7 @@
 package com.example.espacios_um.controladores;
 
+import static android.view.View.GONE;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,11 +59,21 @@ public class Estudiante extends AppCompatActivity {
         codigo = findViewById(R.id.txtCodU);
 
         nombre.setText(usuario.getNombre());
-        codigo.setText(usuario.getCodigo());
+        if ("Estudiante".equalsIgnoreCase(usuario.getTipo())){
+            codigo.setText(usuario.getCodigo());
+        }else if ("Profesor".equalsIgnoreCase(usuario.getTipo())){
+            codigo.setText(usuario.getEmail());
+        }else  if ("Conserje".equalsIgnoreCase(usuario.getTipo())){
+            btnMisReservas.setVisibility(GONE);
+            codigo.setText(usuario.getEmail());
+        }
+
+
+
 
 
         btnMisReservas.setOnClickListener(view -> {
-            irAEspacio("Mis reservas","reserva");
+            irAMisReservas("Mis reservas");
         });
         btnSalones.setOnClickListener(v -> {
             irAEspacio("Salones","Salon");
@@ -95,6 +107,16 @@ public class Estudiante extends AppCompatActivity {
 
         intent.putExtra("nombre_tipos", tipoS);
         intent.putExtra("nombre_tipo",tipo);
+        intent.putExtra("usuario_logueado", usuario);
+
+        startActivity(intent);
+    }
+
+    public void irAMisReservas(String tipoS){
+        Intent intent = new Intent(this, MisReservasControlador.class);
+
+        intent.putExtra("nombre_tipos", tipoS);
+        intent.putExtra("usuario_logueado", usuario);
 
         startActivity(intent);
     }

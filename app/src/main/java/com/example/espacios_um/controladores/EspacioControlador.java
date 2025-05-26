@@ -1,6 +1,7 @@
 package com.example.espacios_um.controladores;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.example.espacios_um.api.EspacioApi;
 import com.example.espacios_um.api.HorarioApi;
 import com.example.espacios_um.modelos.Espacio;
 import com.example.espacios_um.modelos.Horario;
+import com.example.espacios_um.modelos.Usuario;
 
 
 import java.time.LocalDateTime;
@@ -62,6 +64,8 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     private String tipo;
     private boolean abierto;
 
+    private Usuario usuario;
+
     List<Horario> horarios;
 
 
@@ -92,9 +96,6 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     @Override
     public void onEspacioClick(Espacio espacio) {
 
-
-        Toast.makeText(this, "Horarios cargados correctamente", Toast.LENGTH_SHORT).show();
-
         horariosPorEspacio(espacio);
 
     }
@@ -103,7 +104,11 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
      * @param espacio
      */
     @Override
-    public void onEspacioCerrarClick(Espacio espacio) {
+    public void onEspacioReportarClick(Espacio espacio) {
+        Intent intent = new Intent(EspacioControlador.this, ReportarControlador.class);
+        intent.putExtra("espacio_a_reportar",espacio);
+        intent.putExtra("usuario_conserje",usuario);
+        startActivity(intent);
 
     }
 
@@ -120,6 +125,8 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
         tipos = getIntent().getStringExtra("nombre_tipos");
         tipo = getIntent().getStringExtra("nombre_tipo");
 
+        usuario= (Usuario) getIntent().getSerializableExtra("usuario_logueado");
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -134,18 +141,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
         layout= findViewById(R.id.main);
         txtNombreEspacio.setText(tipos);
         listViewReservas=findViewById(R.id.listViewReservas);
-        if (tipos.equals("Mis reservas")) {
 
-            imagen.setVisibility(View.GONE);
-
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(layout);
-
-
-            constraintSet.connect(R.id.listEspacio, ConstraintSet.TOP, R.id.txtMiercoles, ConstraintSet.BOTTOM, 40);
-
-            constraintSet.applyTo(layout);
-        }
 
         txtLunes = findViewById(R.id.txtLunes);
         txtMartes= findViewById(R.id.txtMartes);
@@ -157,6 +153,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
 
         espacioApi = ApiClient.getRetrofit().create(EspacioApi.class);
 
+
         Call<List<Espacio>> call = espacioApi.listarPorTipo(tipo);
         call.enqueue(new Callback<List<Espacio>>() {
             @Override
@@ -164,7 +161,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
                 if (response.isSuccessful() && response.body() != null) {
                     List<Espacio> espacios = response.body();
                     //Toast.
-                    EspacioAdapter adapter = new EspacioAdapter(EspacioControlador.this, espacios,EspacioControlador.this,tipos);
+                    EspacioAdapter adapter = new EspacioAdapter(EspacioControlador.this, espacios,EspacioControlador.this, usuario.getTipo());
                     listEspacios.setAdapter(adapter);
 
                 }
@@ -250,7 +247,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     void horariosPorEspacio(Espacio espacio){
 
         horarioApi = ApiClient.getRetrofit().create(HorarioApi.class);
-
+        listViewReservas.setVisibility(View.VISIBLE);
         Call<List<Horario>> call = horarioApi.listarPorId(1L);
         call.enqueue(new Callback<List<Horario>>() {
             @Override
@@ -267,7 +264,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
 
             @Override
             public void onFailure(Call<List<Horario>> call, Throwable t) {
-                listViewReservas.setVisibility(View.VISIBLE);
+
                 Log.e("API_ERROR", "Fallo en la petición: " + t.getMessage(), t);
                 Toast.makeText(EspacioControlador.this, "Error al cargar los espacios", Toast.LENGTH_SHORT).show();
             }

@@ -5,6 +5,7 @@ package com.example.espacios_um.api;
 import com.example.espacios_um.modelos.Reporte;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,18 +16,18 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ReporteApi {
-    @POST("api/reportes")
-    Call<Reporte> crear(@Body Reporte reporte);
+    @POST("api/v1/reportes")
+    Call<Reporte> crear(@Body Map<String, String> body);
 
-    @GET("api/reportes")
+    @GET("api/v1/reportes")
     Call<List<Reporte>> listar();
 
-    @GET("api/reportes/{id}")
+    @GET("api/v1/reportes/{id}")
     Call<Reporte> buscar(@Path("id") Long id);
 
-    @PUT("api/reportes/{id}")
+    @PUT("api/v1/reportes/{id}")
     Call<Reporte> update(@Path("id") Long id, @Body Reporte reporte);
 
-    @DELETE("api/reportes/{id}")
+    @DELETE("api/v1/reportes/{id}")
     Call<Reporte> delete(@Path("id") Long id);
 }

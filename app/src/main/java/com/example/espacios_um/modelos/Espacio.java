@@ -1,11 +1,12 @@
 package com.example.espacios_um.modelos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Espacio {
+public class Espacio implements Serializable {
 
-    private int ID;
+    private int id;
     private String nombre;
     private int capacidad;
     private  String tipo;
@@ -16,8 +17,8 @@ public class Espacio {
     public Espacio() {
     }
 
-    public Espacio(int ID, String nombre, int capacidad, String tipo) {
-        this.ID = ID;
+    public Espacio(int id, String nombre, int capacidad, String tipo) {
+        this.id = id;
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.tipo = tipo;
@@ -42,12 +43,12 @@ public class Espacio {
         this.capacidad = capacidad;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -77,7 +78,7 @@ public class Espacio {
     @Override
     public String toString() {
         return "Espacio{" +
-                "ID=" + ID +
+                "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", capacidad=" + capacidad +
                 ", tipo='" + tipo + '\'' +

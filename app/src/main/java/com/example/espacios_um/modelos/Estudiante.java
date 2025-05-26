@@ -8,8 +8,8 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(int ID, String nombre, String codigo, String correo, String password) {
-        super(ID, nombre, codigo, correo, password);
+    public Estudiante(int ID, String nombre, String codigo, String correo, String password,String tipo) {
+        super(ID, nombre, codigo, correo, password,tipo);
         reservas = new ArrayList<>();
     }
 

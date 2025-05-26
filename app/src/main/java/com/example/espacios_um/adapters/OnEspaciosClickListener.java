@@ -5,5 +5,5 @@ import com.example.espacios_um.modelos.Horario;
 
 public interface OnEspaciosClickListener {
     void onEspacioClick(Espacio espacio);
-    void onEspacioCerrarClick(Espacio espacio);
+    void onEspacioReportarClick(Espacio espacio);
 }

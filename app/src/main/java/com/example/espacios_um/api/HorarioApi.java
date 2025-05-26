@@ -16,21 +16,21 @@ import retrofit2.http.Path;
 
 public interface HorarioApi{
 
-    @POST("api/horarios")
+    @POST("api/v1/horarios")
     Call<Horario> crear(@Body Horario horario);
 
-    @GET("api/horarios")
+    @GET("api/v1/horarios")
     Call<List<Horario>> listar();
 
     @GET("api/v1/horarios/espacio/{id}")
     Call<List<Horario>> listarPorId(@Path("id") Long id);
 
-    @GET("api/horarios/{id}")
+    @GET("api/v1/horarios/{id}")
     Call<Horario> get(@Path("id") Long id);
 
-    @PUT("api/horarios/{id}")
+    @PUT("api/v1/horarios/{id}")
     Call<List<Horario>> update(@Path("id") Long id, @Body Horario horario);
 
-    @DELETE("api/horarios/{id}")
+    @DELETE("api/v1/horarios/{id}")
     Call<List<Horario>> delete(@Path("id") Long id);
 }

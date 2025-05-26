@@ -6,6 +6,35 @@
     <string name="btnIniciarSesion">Iniciar sesión</string>
 
 
+    <string-array name="filtrosPC_array">
+        <item>Nombre</item>
+        <item>Codigo</item>
+    </string-array>
+
+    <string-array name="filtros_array">
+        <item>Nombre</item>
+        <item>Identificacion</item>
+    </string-array>
+
+    <string-array name="reportar_array">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="tipo_usuario_array">
+        <item>Estudiante</item>
+        <item>Profesor</item>
+        <item>Conserje</item>
+    </string-array>
+
+    <string-array name="tipo_usuarios_array">
+        <item>Conserjes</item>
+        <item>Estudiantes</item>
+        <item>Profesores</item>
+
+    </string-array>
+
+
     <string name="btnLogin">Login</string>
     <string name="btnRegistro">Registro</string>
     //Vista Usuario

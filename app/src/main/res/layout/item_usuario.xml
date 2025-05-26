@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
 
@@ -25,7 +25,15 @@
             android:id="@+id/txtNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre del espacio"
+            android:text="Nombre usuario"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtCodigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Codigo"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -38,33 +46,34 @@
             android:gravity="center_vertical"
             android:layout_marginTop="6dp">
 
-            <TextView
-                android:id="@+id/txtCapacidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Capacidad"
-                android:textSize="14sp" />
+            <Button
+                android:id="@+id/btnModificar"
+                android:layout_width="139dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/boton_borde"
+
+                android:text="Modifcar"
+                android:textColor="#000000" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"> <!-- mueve el texto a la derecha -->
+                android:gravity="end">
 
                 <Button
-                    android:id="@+id/btnHorarios"
-                    android:layout_width="105dp"
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="139dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/boton_borde"
-                    android:text="Horarios"
-                    android:textColor="#000000" />
 
+
+                    android:text="Eliminar"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

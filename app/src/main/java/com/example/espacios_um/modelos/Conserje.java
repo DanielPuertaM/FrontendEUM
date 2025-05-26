@@ -6,8 +6,8 @@ public class Conserje extends Usuario{
 
     private List<Reporte> reportes;
 
-    public Conserje(int ID, String nombre, String codigo, String email, String identificacion, List<Reporte> reportes) {
-        super(ID, nombre, codigo, email, identificacion);
+    public Conserje(int ID, String nombre, String codigo, String email, String identificacion, List<Reporte> reportes,String tipo) {
+        super(ID, nombre, codigo, email, identificacion,tipo);
         this.reportes = reportes;
     }
 

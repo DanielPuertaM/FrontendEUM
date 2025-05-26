@@ -9,19 +9,19 @@ public class Reporte {
     private int mes;
     private int anio;
 
-    private Espacio espacio;
+    private Long idEspacio;
 
     public Reporte() {
     }
 
-    public Reporte(int ID, String descripcion, int hora, int dia, int mes, int anio, Espacio espacio) {
+    public Reporte(int ID, String descripcion, int hora, int dia, int mes, int anio, Long idEspacio) {
         this.ID = ID;
         this.descripcion = descripcion;
         this.hora = hora;
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
-        this.espacio = espacio;
+        this.idEspacio = idEspacio;
     }
 
     public int getID() {
@@ -72,12 +72,12 @@ public class Reporte {
         this.anio = anio;
     }
 
-    public Espacio getEspacio() {
-        return espacio;
+    public Long getEspacio() {
+        return idEspacio;
     }
 
-    public void setEspacio(Espacio espacio) {
-        this.espacio = espacio;
+    public void setEspacio(Long idEspacio) {
+        this.idEspacio = idEspacio;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Reporte {
                 ", dia=" + dia +
                 ", mes=" + mes +
                 ", anio=" + anio +
-                ", espacio=" + espacio +
+                ", espacio=" + idEspacio +
                 '}';
     }
 }

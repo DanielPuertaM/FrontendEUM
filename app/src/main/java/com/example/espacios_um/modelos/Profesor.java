@@ -8,8 +8,8 @@ public class Profesor extends Usuario {
     public Profesor() {
     }
 
-    public Profesor(int ID, String nombre, String codigo, String email, String identificacion) {
-        super(ID, nombre, codigo, email, identificacion);
+    public Profesor(int ID, String nombre, String codigo, String email, String identificacion,String tipo) {
+        super(ID, nombre, codigo, email, identificacion,tipo);
         reservas = new ArrayList<>();
     }
 

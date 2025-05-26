@@ -15,18 +15,21 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ReservaApi {
-    @POST("api/reservas")
+    @POST("api/v1/reservas")
     Call<Reserva> crear(@Body Reserva reserva);
 
-    @GET("api/reservas")
+    @GET("api/v1/reservas")
     Call<List<Reserva>> listar();
 
-    @GET("api/reservas/{id}")
+    @GET("api/v1/reservas/{id}")
     Call<Reserva> buscar(@Path("id") Long id);
 
-    @PUT("api/reservas/{id}")
+    @GET("api/v1/reservas/estudiante/{id}")
+    Call<List<Reserva>>  buscarPorIdEstudiante(@Path("id") Long id);
+
+    @PUT("api/v1/reservas/{id}")
     Call<Reserva> update(@Path("id") Long id, @Body Reserva reserva);
 
-    @DELETE("api/reservas/{id}")
+    @DELETE("api/v1/reservas/{id}")
     Call<Reserva> delete(@Path("id") Long id);
 }

@@ -16,6 +16,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".controladores.gestionUsuarioConserjeControlador"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.gestionDeEspaciosControlador"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.gestionUsuariosControlador"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.adminControlador"
+            android:exported="false" />
+        <activity
+            android:name=".controladores.MisReservasControlador"
+            android:exported="false" />
+        <activity
+            android:name=".MisReservasControlador"
+            android:exported="false" />
+        <activity
             android:name=".controladores.ReportarControlador"
             android:exported="false" />
         <activity

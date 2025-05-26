@@ -10,15 +10,19 @@ public class Usuario implements Serializable {
     protected String email;
     protected String identificacion;
 
+    protected String tipo;
+
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String codigo, String email, String identificacion) {
+    public Usuario(int id, String nombre, String codigo, String email, String identificacion, String tipo) {
         this.id = id;
         this.nombre = nombre;
         this.codigo = codigo;
         this.email = email;
         this.identificacion = identificacion;
+        this.tipo=tipo;
+
     }
 
     public int getID() {
@@ -64,11 +68,20 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Usuario{" +
-                "ID=" + id +
+                "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", codigo=" + codigo +
+                ", codigo='" + codigo + '\'' +
                 ", email='" + email + '\'' +
                 ", identificacion='" + identificacion + '\'' +
+                ", tipo='" + tipo + '\'' +
                 '}';
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

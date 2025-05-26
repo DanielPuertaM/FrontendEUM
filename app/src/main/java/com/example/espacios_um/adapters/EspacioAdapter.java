@@ -28,27 +28,48 @@ public class EspacioAdapter extends ArrayAdapter<Espacio> {
 
 
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Espacio espacio = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_espacio, parent, false);
+            if (tipo.equals("Conserje")){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_reportar_espacio, parent, false);
+            }else{
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_espacio, parent, false);
+            }
+
         }
         TextView nombre = convertView.findViewById(R.id.txtNombre);
         TextView capacidad = convertView.findViewById(R.id.txtCapacidad);
 
-        Button horarios =  convertView.findViewById(R.id.btnHorarios);
-        if(tipo.equals("Mis reservas")){
-            horarios.setText("Cancelar");
 
-        }
+
+
+
         nombre.setText(espacio.getNombre());
         capacidad.setText("Capacidad: " + espacio.getCapacidad());
-        horarios.setOnClickListener(view -> {
-            if (listener != null) {
-                listener.onEspacioClick(espacio);
-            }
-        });
+
+        if (tipo.equals("Conserje")){
+            Button reportar= convertView.findViewById(R.id.btnReportar);
+            reportar.setOnClickListener(view -> {
+                if (listener !=null){
+                    listener.onEspacioReportarClick(espacio);
+                }
+
+            });
+        }else{
+            Button horarios =  convertView.findViewById(R.id.btnHorarios);
+            horarios.setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onEspacioClick(espacio);
+                }
+            });
+        }
+
+
+
 
         return convertView;
     }
