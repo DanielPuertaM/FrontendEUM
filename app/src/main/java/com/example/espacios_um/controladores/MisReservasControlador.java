@@ -71,15 +71,10 @@ public class MisReservasControlador extends AppCompatActivity implements OnEspac
             return insets;
         });
 
-
-
-
-        txtNombreEspacio= findViewById(R.id.txtNombreEspacio);
+        txtNombreEspacio = findViewById(R.id.txtNombreEspacio);
 
         txtNombreEspacio.setText(tipos);
-        listViewReservas=findViewById(R.id.listViewReservas);
-
-
+        listViewReservas = findViewById(R.id.listViewReservas);
         txtLunes = findViewById(R.id.txtLunes);
         txtMartes= findViewById(R.id.txtMartes);
         txtMiercoles= findViewById(R.id.txtMiercoles);
@@ -90,7 +85,6 @@ public class MisReservasControlador extends AppCompatActivity implements OnEspac
         layout=findViewById(R.id.main);
 
         layout.setOnTouchListener((v, event) -> {
-
             listViewReservas.setVisibility(View.GONE);
             return false;
         });

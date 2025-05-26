@@ -59,22 +59,19 @@ public class Estudiante extends AppCompatActivity {
         codigo = findViewById(R.id.txtCodU);
 
         nombre.setText(usuario.getNombre());
-        if ("Estudiante".equalsIgnoreCase(usuario.getTipo())){
+        if ("Estudiante".equalsIgnoreCase(usuario.getTipo())) {
             codigo.setText(usuario.getCodigo());
-        }else if ("Profesor".equalsIgnoreCase(usuario.getTipo())){
+        } else if ("Profesor".equalsIgnoreCase(usuario.getTipo())) {
             codigo.setText(usuario.getEmail());
-        }else  if ("Conserje".equalsIgnoreCase(usuario.getTipo())){
+        } else if ("Conserje".equalsIgnoreCase(usuario.getTipo())) {
             btnMisReservas.setVisibility(GONE);
             codigo.setText(usuario.getEmail());
         }
 
-
-
-
-
         btnMisReservas.setOnClickListener(view -> {
             irAMisReservas("Mis reservas");
         });
+
         btnSalones.setOnClickListener(v -> {
             irAEspacio("Salones","Salon");
         });
@@ -95,8 +92,6 @@ public class Estudiante extends AppCompatActivity {
             Intent intent = new Intent(Estudiante.this, IniciarSesion.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-
-
             finish();
         });
 

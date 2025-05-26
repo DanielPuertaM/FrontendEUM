@@ -6,30 +6,27 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 
 public class Horario {
-
-    private Long ID;
+    private Long id;
     private LocalDateTime horaInicio;
-    private LocalDateTime horaFinal;
-
-
+    private LocalDateTime horaFin;
     private Espacio espacio;
 
     public Horario() {
     }
 
-    public Horario(Long ID, LocalDateTime horaInicio, LocalDateTime horaFinal, Espacio espacio) {
-        this.ID = ID;
+    public Horario(Long id, LocalDateTime horaInicio, LocalDateTime horaFin, Espacio espacio) {
+        this.id = id;
         this.horaInicio = horaInicio;
-        this.horaFinal = horaFinal;
+        this.horaFin = horaFin;
         this.espacio = espacio;
     }
 
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getHoraInicio() {
@@ -40,12 +37,12 @@ public class Horario {
         this.horaInicio = horaInicio;
     }
 
-    public LocalDateTime getHoraFinal() {
-        return horaFinal;
+    public LocalDateTime getHoraFin() {
+        return horaFin;
     }
 
-    public void setHoraFinal(LocalDateTime horaFinal) {
-        this.horaFinal = horaFinal;
+    public void setHoraFin(LocalDateTime horaFin) {
+        this.horaFin = horaFin;
     }
 
     public Espacio getEspacio() {
@@ -59,12 +56,10 @@ public class Horario {
     @Override
     public String toString() {
         return "Horario{" +
-                "ID=" + ID +
+                "ID=" + id +
                 ", horaInicio=" + horaInicio +
-                ", horaFinal=" + horaFinal +
+                ", horaFinal=" + horaFin +
                 ", espacio=" + espacio +
                 '}';
     }
-
-
 }
