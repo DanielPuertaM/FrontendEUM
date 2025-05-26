@@ -90,12 +90,6 @@ public class MisReservasControlador extends AppCompatActivity implements OnEspac
         });
 
         reservasUsuario();
-
-
-
-
-
-
     }
 
     /**
@@ -162,7 +156,6 @@ public class MisReservasControlador extends AppCompatActivity implements OnEspac
             if (r.getidEspacio() != null) {
                 espacioIds.add(r.getidEspacio());
             } else {
-                // Puedes loguear para saber qué reservas llegaron sin espacio
                 Log.w("ReservaNull", "Una reserva no tiene espacio asociado: ID = " + r.getID());
             }
         }

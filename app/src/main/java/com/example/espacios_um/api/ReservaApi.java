@@ -5,6 +5,7 @@ package com.example.espacios_um.api;
 import com.example.espacios_um.modelos.Reserva;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,7 +17,7 @@ import retrofit2.http.Path;
 
 public interface ReservaApi {
     @POST("api/v1/reservas")
-    Call<Reserva> crear(@Body Reserva reserva);
+    Call<Reserva> crear(@Body Map<String, String> body);
 
     @GET("api/v1/reservas")
     Call<List<Reserva>> listar();

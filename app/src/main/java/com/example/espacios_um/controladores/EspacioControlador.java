@@ -26,16 +26,15 @@ import com.example.espacios_um.adapters.OnHorarioClickListener;
 import com.example.espacios_um.api.ApiClient;
 import com.example.espacios_um.api.EspacioApi;
 import com.example.espacios_um.api.HorarioApi;
+import com.example.espacios_um.api.ReservaApi;
 import com.example.espacios_um.modelos.Espacio;
 import com.example.espacios_um.modelos.Horario;
+import com.example.espacios_um.modelos.Reserva;
 import com.example.espacios_um.modelos.Usuario;
-import com.example.espacios_um.utils.LocalDateTimeTypeAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +51,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     ListView listEspacios;
     private EspacioApi espacioApi;
     private HorarioApi horarioApi;
+    private ReservaApi reservaApi;
     ListView listViewReservas;
     ImageView imagen;
     ConstraintLayout layout;
@@ -60,13 +60,31 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     private boolean abierto;
     private Usuario usuario;
     List<Horario> horarios;
-
+    private Espacio espacio;
     /**
      * @param horario
      */
     @Override
     public void onHorarioClick(Horario horario) {
-        Toast.makeText(EspacioControlador.this, "Reservado", Toast.LENGTH_SHORT).show();
+
+        Map<String, String> body = new HashMap<>();
+        body.put("idEstudiante", String.valueOf(usuario.getID()));
+        body.put("idEspacio", String.valueOf(espacio.getId()));
+        body.put("idHorario", String.valueOf(horario.getId()));
+        reservaApi = ApiClient.getRetrofit().create(ReservaApi.class);
+        Call<Reserva> call =  reservaApi.crear(body);
+        call.enqueue(new Callback<Reserva>() {
+            @Override
+            public void onResponse(Call<Reserva> call, Response<Reserva> response) {
+                Toast.makeText(EspacioControlador.this, "Reserva creada con éxito", Toast.LENGTH_SHORT).show();
+                listViewReservas.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<Reserva> call, Throwable t) {
+                Toast.makeText(EspacioControlador.this, "No se pudo crear la reserva", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -82,6 +100,7 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
      */
     @Override
     public void onEspacioClick(Espacio espacio) {
+        this.espacio = espacio;
         horariosPorEspacio(espacio);
     }
 
@@ -193,8 +212,6 @@ public class EspacioControlador extends AppCompatActivity implements OnEspaciosC
     }
 
     void horariosPorEspacio(Espacio espacio){
-
-
         horarioApi = ApiClient.getRetrofit().create(HorarioApi.class);
         listViewReservas.setVisibility(View.VISIBLE);
         Call<List<Horario>> call = horarioApi.listarPorId(espacio.getId());
